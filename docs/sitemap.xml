@@ -3,17 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://icarus4.com/categories/</loc>
+    <loc>http://blog.icarus4.com/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://icarus4.com/</loc>
+    <loc>http://blog.icarus4.com/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://icarus4.com/tags/</loc>
+    <loc>http://blog.icarus4.com/tags/</loc>
     <priority>0</priority>
   </url>
   
