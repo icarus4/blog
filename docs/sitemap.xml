@@ -8,12 +8,12 @@
   </url>
   
   <url>
-    <loc>http://blog.icarus4.com/</loc>
+    <loc>http://blog.icarus4.com/tags/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://blog.icarus4.com/tags/</loc>
+    <loc>http://blog.icarus4.com/</loc>
     <priority>0</priority>
   </url>
   

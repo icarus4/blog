@@ -1,19 +1,22 @@
 baseURL = "http://blog.icarus4.com/"
-languageCode = "utf-8"
-title = "My Blog"
+languageCode = "zh-TW"
+title = "icarus4"
 theme = "cactus"
 publishDir = "docs"
+googleAnalytics = "UA-47031561-1"
+disqusShortname = "icarus4"
+hasCJKLanguage = true
 
 [taxonomies]
 tag = "tags"
 category = "categories"
 
 [params]
-	name = "John Doe"
-	description = "Describe your website"
-	bio = "Blogger & Programmer"
+	name = "icarus4"
+	description = "Programmer and many more"
+	bio = "Programmer and many more"
 	# Enter optionally your twitter account
-	twitter = "Your Twitter account"
+	# twitter = "Your Twitter account"
 	enableRSS = true
 
 	# Integrate Javascript files or stylesheets by adding the url to the external assets or by
@@ -33,7 +36,7 @@ category = "categories"
 	readMore = ""
 	copyright = ""
 	# Sharing options and author information in posts
-	aboutAuthor = "I'm an blogger."
+	aboutAuthor = "Programmer and many more"
 	tweet = ""
 	share = ""
 	# 404 page
@@ -47,7 +50,7 @@ category = "categories"
 
 # Add additional social link entries underneath
 [social]
-    twitter  = "https://www.twitter.com/"
-    facebook = "https://www.facebook.com/"
-    github   = "https://www.github.com/"
-    dribble  = "https://www.dribbble.com/"
+    twitter  = "https://twitter.com/icarus4chu"
+    facebook = "https://www.facebook.com/icarus4.chu"
+    github   = "https://github.com/icarus4"
+    # dribble  = "https://www.dribbble.com/"

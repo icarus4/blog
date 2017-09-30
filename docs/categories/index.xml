@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on My Blog</title>
+    <title>Categories on icarus4</title>
     <link>http://blog.icarus4.com/categories/</link>
-    <description>Recent content in Categories on My Blog</description>
+    <description>Recent content in Categories on icarus4</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>utf-8</language>
+    <language>zh-TW</language>
     
 	<atom:link href="http://blog.icarus4.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
