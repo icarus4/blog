@@ -1,0 +1,5 @@
+baseURL = "http://icarus4.com/"
+languageCode = "utf-8"
+title = "My Blog"
+theme = "cactus"
+publishDir = "docs"
