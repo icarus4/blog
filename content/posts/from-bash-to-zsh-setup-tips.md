@@ -1,7 +1,7 @@
 ---
 title: "bash 轉移 zsh (oh-my-zsh) 設定心得"
 date: 2014-01-30T13:39:28+08:00
-draft: true
+draft: false
 ---
 
 

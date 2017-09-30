@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+	<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="icarus4">
+<meta name="description" content="Programmer and many more">
+<meta name="generator" content="Hugo 0.29" />
+<title>bash 轉移 zsh (oh-my-zsh) 設定心得</title>
+<link rel="shortcut icon" href="http://blog.icarus4.com/images/favicon.ico">
+<link rel="stylesheet" href="http://blog.icarus4.com/css/style.css">
+<link rel="stylesheet" href="http://blog.icarus4.com/css/highlight.css">
+
+
+
+<link rel="stylesheet" href="http://blog.icarus4.com/css/monosocialiconsfont.css">
+
+
+
+<link href="http://blog.icarus4.com/index.xml" rel="alternate" type="application/rss+xml" title="icarus4" />
+
+
+<meta property="og:title" content="bash 轉移 zsh (oh-my-zsh) 設定心得" />
+<meta property="og:description" content="前言 一直以來看到很多人推薦用 zsh (z shell)，原因就不贅述了，簡單講就是更好用、更炫 (?)。今天花了一些時間從 bash 轉移到 zsh，過程中遇到一些" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.icarus4.com/posts/from-bash-to-zsh-setup-tips/" />
+
+
+
+<meta property="article:published_time" content="2014-01-30T13:39:28&#43;08:00"/>
+<meta property="article:modified_time" content="2014-01-30T13:39:28&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="bash 轉移 zsh (oh-my-zsh) 設定心得">
+<meta itemprop="description" content="前言 一直以來看到很多人推薦用 zsh (z shell)，原因就不贅述了，簡單講就是更好用、更炫 (?)。今天花了一些時間從 bash 轉移到 zsh，過程中遇到一些">
+
+
+<meta itemprop="dateModified" content="2014-01-30T13:39:28&#43;08:00" />
+<meta itemprop="wordCount" content="1982">
+
+
+
+<meta itemprop="keywords" content="" />
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="bash 轉移 zsh (oh-my-zsh) 設定心得"/>
+<meta name="twitter:description" content="前言 一直以來看到很多人推薦用 zsh (z shell)，原因就不贅述了，簡單講就是更好用、更炫 (?)。今天花了一些時間從 bash 轉移到 zsh，過程中遇到一些"/>
+<meta name="twitter:site" content="@https://twitter.com/icarus4chu"/>
+
+
+    </head>
+<body>
+    <nav class="main-nav">
+	
+		<a href='http://blog.icarus4.com/'> <span class="arrow">←</span>Home</a>
+	
+
+	
+
+	
+		<a class="cta" href="http://blog.icarus4.com/index.xml">Subscribe</a>
+	
+</nav>
+
+    <section id="wrapper">
+        
+        
+<article class="post">
+    <header>
+        <h1>bash 轉移 zsh (oh-my-zsh) 設定心得</h1>
+        <h2 class="subtitle"></h2>
+        <h2 class="headline">
+        January 30, 2014
+        <br>
+        
+        </h2>
+    </header>
+    <section id="post-body">
+        
+
+<h1 id="前言">前言</h1>
+
+<p>一直以來看到很多人推薦用 zsh (z shell)，原因就不贅述了，簡單講就是更好用、更炫 (?)。今天花了一些時間從 bash 轉移到 zsh，過程中遇到一些小問題讓我卡了幾次小關，這篇主要是分享我遇到的狀況，有興趣裝 zsh 的人如果遇到類似問題可以參考看看。</p>
+
+<h1 id="安裝說明">安裝說明</h1>
+
+<p>這邊講 MAC 的安裝方法，不過 Linux 也差不多就是了。簡單來說，共有四個步驟：
+1. 安裝 <code>zsh</code>
+2. 安裝 <code>oh-my-zsh</code>
+3. 安裝 <code>zsh-completions</code>
+4. 調整設定</p>
+
+<p>第2步安裝的 <a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a> 是一套 zsh 的 framework，內建了非常多實用的設定、plugin、alias、theme&hellip;等等，可以讓剛跳到 zsh 的使用者大幅降低轉換和設定的成本，幾乎是達到了免設定就能非常好用的境界。從 google 趨勢搜尋可以看出 2011 年 oh-my-zsh 出現在 google 趨勢搜尋以後，<a href="http://www.google.com.tw/trends/explore#q=zsh%2C%20oh-my-zsh">zsh的熱門度開始由下降的趨勢轉為上升</a>，所以 zsh 最近能越來越紅我想 oh-my-zsh 功不可沒。總之強烈建議要玩 zsh 的話記得一起安裝 oh-my-zsh！</p>
+
+<p>不過即使 oh-my-zsh 再好用，還是有一些自動補全的功能沒有包含在裡面。例如說如果你在 bash 底下有安裝 <code>bash-completion</code>，會發現你用 homebrew 再按下 tab 時可以自動補全套件的名稱，像是這樣：</p>
+
+<pre><code class="language-sh">$ brew search z
+</code></pre>
+
+<p>這時按下 <code>tab</code> 鍵，會自動show出所有z開頭的套件：</p>
+
+<pre><code class="language-sh">$ brew search z
+z                             zeromq22                      zsh-completions
+z80asm                        zile                          zsh-history-substring-search
+z80dasm                       zinc                          zsh-lovers
+zabbix                        zint                          zsh-syntax-highlighting
+zbackup                       zlib                          zshdb
+zbar                          znc                           zssh
+zdelta                        zookeeper                     zsync
+zebra                         zopfli                        zxcc
+zenity                        zpython                       zzuf
+zeromq                        zsh
+</code></pre>
+
+<p>類似的 homebrew 補全功能在 oh-my-zsh 是沒有納入的，所以需要透過自行撰寫，或者利用類似 <code>zsh-completions</code> 這樣的套件來補足。</p>
+
+<h1 id="安裝方法">安裝方法</h1>
+
+<h2 id="安裝-zsh">安裝 zsh</h2>
+
+<pre><code class="language-sh">$ brew install zsh
+</code></pre>
+
+<p>然後記得修改預設的 shell 為 zsh ，這樣子以後開一個新的 shell 就都會是使用 zsh 了：</p>
+
+<pre><code class="language-sh">$ chsh -s /usr/local/bin/zsh
+</code></pre>
+
+<h2 id="安裝-on-my-zsh">安裝 on-my-zsh</h2>
+
+<p>下載：</p>
+
+<pre><code class="language-sh">$ git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+</code></pre>
+
+<p>預設安裝路徑是 <code>~/.oh-my-zsh</code>，如果想裝在別的地方記得記得修改 <code>~/.zshrc</code>。</p>
+
+<p>zsh 的設定檔放在 <code>~/.zshrc</code>，這個檔案需要我們自己產生。由於我們用 oh-my-zsh，所以這邊建議使用 oh-my-zsh 預設的 templete 比較省事：</p>
+
+<pre><code class="language-sh">$ cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+</code></pre>
+
+<h2 id="安裝-zsh-completions">安裝 zsh-completions</h2>
+
+<p>安裝：</p>
+
+<pre><code class="language-sh">$ brew install zsh-completions
+</code></pre>
+
+<p>要啟用還需要打開你的 <code>.zshrc</code> 加入以下兩行來納入 zsh-completions 的補全功能：
+```diff .zshrc
+@@ -1,8 +1,11 @@
+ # Path to your oh-my-zsh configuration.
+ ZSH=$HOME/.oh-my-zsh</p>
+
+<p>+# zsh-completions
++fpath=(/usr/local/share/zsh-completions $fpath)</p>
+
+<p># Set name of the theme to load.
+ # Look in ~/.oh-my-zsh/themes/
+ # Optionally, if you set this to &ldquo;random&rdquo;, it&rsquo;ll load a random theme each
+ # time that oh-my-zsh is loaded.
+ #ZSH_THEME=&ldquo;robbyrussell&rdquo;</p>
+
+<pre><code>
+同時還需要 rebuild zsh 的 `.zcompdump`
+```sh
+$ rm -f ~/.zcompdump; compinit
+</code></pre>
+
+<p>這樣子就搞定了</p>
+
+<h2 id="調整設定">調整設定</h2>
+
+<p>經過以上的安裝，已經可以做一些基本的使用了（也很好用了），不過 oh-my-zsh 內建很多 theme 還有好用的 plugin，需要透過手動啟用。</p>
+
+<h3 id="1-切換-theme">1. 切換 theme</h3>
+
+<p>所有的主題都放在 <code>~/.oh-my-zsh/themes</code> 目錄中，先看一下有哪些可以用：</p>
+
+<pre><code>$ ls ~/.oh-my-zsh/themes
+3den.zsh-theme           fwalch.zsh-theme           nanotech.zsh-theme
+Soliah.zsh-theme         gallifrey.zsh-theme        nebirhos.zsh-theme
+adben.zsh-theme          gallois.zsh-theme          nicoulaj.zsh-theme
+af-magic.zsh-theme       garyblessington.zsh-theme  norm.zsh-theme
+afowler.zsh-theme        gentoo.zsh-theme           obraun.zsh-theme
+agnoster.zsh-theme       geoffgarside.zsh-theme     peepcode.zsh-theme
+alanpeabody.zsh-theme    gianu.zsh-theme            philips.zsh-theme
+amuse.zsh-theme          gnzh.zsh-theme             pmcgee.zsh-theme
+apple.zsh-theme          gozilla.zsh-theme          pure.zsh-theme
+arrow.zsh-theme          half-life.zsh-theme        pygmalion.zsh-theme
+aussiegeek.zsh-theme     humza.zsh-theme            re5et.zsh-theme
+avit.zsh-theme           imajes.zsh-theme           rgm.zsh-theme
+awesomepanda.zsh-theme   intheloop.zsh-theme        risto.zsh-theme
+bira.zsh-theme           itchy.zsh-theme            rixius.zsh-theme
+blinks.zsh-theme         jaischeema.zsh-theme       rkj-repos.zsh-theme
+bureau.zsh-theme         jbergantine.zsh-theme      rkj.zsh-theme
+candy-kingdom.zsh-theme  jispwoso.zsh-theme         robbyrussell.zsh-theme
+candy.zsh-theme          jnrowe.zsh-theme           sammy.zsh-theme
+  .
+  .
+  .
+</code></pre>
+
+<p>切換方式是修改 <code>.zshrc</code> 的 <code>ZSH_THEME</code> 這個參數，預設是 <code>robbyrussell</code>，如果想改成 <code>apple.zsh-theme</code>，那麼請把 <code>ZSH_THEME</code> 改為 <code>apple</code>：
+```diff .zshrc
+ # Set name of the theme to load.
+ # Look in ~/.oh-my-zsh/themes/
+ # Optionally, if you set this to &ldquo;random&rdquo;, it&rsquo;ll load a random theme each
+ # time that oh-my-zsh is loaded.
+-ZSH_THEME=&ldquo;robbyrussell&rdquo;
++ZSH_THEME=&ldquo;apple&rdquo;</p>
+
+<pre><code>改完後，重新登入看看，應該就可以發現你的 shell 長得不一樣了。
+
+[這邊有一些 theme 的截圖](https://github.com/robbyrussell/oh-my-zsh/wiki/themes)，如果不想一個一個試來看效果，可以參考看看。
+
+### 2. 啟用 plugin
+oh-my-zsh 內建的 plugin 都放在 `~/.oh-my-zsh/plugins`：
+```sh
+$ ls ~/.oh-my-zsh/plugins
+ant                github                    rails3
+apache2-macports   gitignore                 rails4
+archlinux          gnu-utils                 rake
+autoenv            go                        rand-quote
+autojump           golang                    rbenv
+autopep8           gpg-agent                 rbfu
+battery            gradle                    rebar
+bower              grails                    redis-cli
+brew               heroku                    repo
+  .
+  .
+  .
+</code></pre>
+
+<p>啟用 plugin 一樣是在 <code>.zshrc</code> 中做設定，預設的設定只啟用了 git 的 plugin，如下：
+```sh .zshrc</p>
+
+<h1 id="which-plugins-would-you-like-to-load-plugins-can-be-found-in-oh-my-zsh-plugins">Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)</h1>
+
+<h1 id="custom-plugins-may-be-added-to-oh-my-zsh-custom-plugins">Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/</h1>
+
+<h1 id="example-format-plugins-rails-git-textmate-ruby-lighthouse">Example format: plugins=(rails git textmate ruby lighthouse)</h1>
+
+<p>plugins=(git)</p>
+
+<pre><code>
+要啟用某個 plugin，就只要加在括號裡即可，比如說想要用 heroku 的 plugin，請把 .zshrc 改成：
+```diff .zshrc
+ # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+ # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+ # Example format: plugins=(rails git textmate ruby lighthouse)
+-plugins=(git)
++plugins=(git heroku)
+</code></pre>
+
+<p>至於這麼多 plugin 分別有什麼用途，以後有空再介紹&hellip;.</p>
+
+<h1 id="轉換過程中可能遇到的一些問題">轉換過程中可能遇到的一些問題</h1>
+
+<h3 id="1-alias">1. alias</h3>
+
+<p>如果你本來就有設定一些 alias 在你的 <code>.bashrc</code>，你又把這些設定直接套用到 <code>.zshrc</code>，那有機會有一些指令會變怪怪的，這有可能是你設定的 alias 與 oh-my-zsh 內建的衝到了。oh-my-zsh 內建的 alias 放在 <code>~/.oh-my-zsh/lib/aliases.zsh</code>，內容如下：
+```sh aliases.zsh</p>
+
+<h1 id="push-and-pop-directories-on-directory-stack">Push and pop directories on directory stack</h1>
+
+<p>alias pu=&lsquo;pushd&rsquo;
+alias po=&lsquo;popd&rsquo;</p>
+
+<h1 id="basic-directory-operations">Basic directory operations</h1>
+
+<p>alias &hellip;=&lsquo;cd ../..&rsquo;
+alias &ndash; -=&lsquo;cd -&rsquo;</p>
+
+<h1 id="super-user">Super user</h1>
+
+<p>alias _=&lsquo;sudo&rsquo;
+alias please=&lsquo;sudo&rsquo;</p>
+
+<p>#alias g=&lsquo;grep -in&rsquo;</p>
+
+<h1 id="show-history">Show history</h1>
+
+<p>if [ &ldquo;$HIST_STAMPS&rdquo; = &ldquo;mm/dd/yyyy&rdquo; ]
+then
+    alias history=&lsquo;fc -fl 1&rsquo;
+elif [ &ldquo;$HIST_STAMPS&rdquo; = &ldquo;dd.mm.yyyy&rdquo; ]
+then
+    alias history=&lsquo;fc -El 1&rsquo;
+elif [ &ldquo;$HIST_STAMPS&rdquo; = &ldquo;yyyy-mm-dd&rdquo; ]
+then
+    alias history=&lsquo;fc -il 1&rsquo;
+else
+    alias history=&lsquo;fc -l 1&rsquo;
+fi</p>
+
+<h1 id="list-direcory-contents">List direcory contents</h1>
+
+<p>alias lsa=&lsquo;ls -lah&rsquo;
+alias l=&lsquo;ls -la&rsquo;
+alias ll=&lsquo;ls -l&rsquo;
+alias la=&lsquo;ls -lA&rsquo;
+alias sl=ls # often screw this up</p>
+
+<p>alias afind=&lsquo;ack-grep -il&rsquo;</p>
+
+<pre><code>建議要在 `.zshrc` 加上自己的 alias 前先確認看看這個檔案裡是不是有一些 alias 會跟你的衝到。
+### 2. bash-completion
+如果你跟我一樣用 bash 時有裝 bash-completion，而且又沒仔細弄清楚就把 `.bashrc` 的內容一股腦套用在 `.zshrc` 上，那麼當你開一個新的 shell 時有可能會發現遇到以下的訊息：
+```sh
+  .
+  .
+  .
+/usr/local/etc/bash_completion:138: command not found: complete
+/usr/local/etc/bash_completion:141: command not found: complete
+/usr/local/etc/bash_completion:144: command not found: complete
+/usr/local/etc/bash_completion:147: command not found: complete
+/usr/local/etc/bash_completion:150: command not found: complete
+/usr/local/etc/bash_completion:153: command not found: complete
+/usr/local/etc/bash_completion:156: command not found: complete
+/usr/local/etc/bash_completion:159: command not found: complete
+/usr/local/etc/bash_completion:162: command not found: complete
+/usr/local/etc/bash_completion:246: parse error near `]]'
+</code></pre>
+
+<p>這是因為在安裝 bash-completion 的時候，原則上都會加入以下內容在你的 <code>.bashrc</code>：
+<code>sh .bashrc
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
+</code>
+以上指令會去source <code>bash_completion</code> 的內容，而 bash_completion 裡面使用了 <a href="http://www.gnu.org/software/bash/manual/html_node/Programmable-Completion-Builtins.html">bash completion buitins</a> 中的 <code>complete</code> 這個指令，所以如果你的 .zshrc 也去 source bash_completion，那就會show出像上面的 <code>command not found: complete</code> 這種訊息了。所以記得在 .zshrc 中不要加入這段 code。</p>
+
+<p>趕快一起來用 zsh 吧！</p>
+
+    </section>
+</article>
+
+<footer id="post-meta" class="clearfix">
+    
+    <img class="avatar" src="http://blog.icarus4.com/images/avatar.png">
+    <div>
+        <span class="dark">icarus4</span>
+        <span>Programmer and many more</span>
+    </div>
+    
+    <section id="sharing">
+        <a class="twitter" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fblog.icarus4.com%2fposts%2ffrom-bash-to-zsh-setup-tips%2f - bash%20%e8%bd%89%e7%a7%bb%20zsh%20%28oh-my-zsh%29%20%e8%a8%ad%e5%ae%9a%e5%bf%83%e5%be%97 "><span class="icon-twitter"> tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+
+    </section>
+</footer>
+
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "icarus4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<ul id="post-list" class="archive readmore">
+    <h3>Read more</h3>
+
+    
+    
+    
+        <li>
+            <a href="/posts/nodejs-installation-guide/">Node.js 安裝與版本切換教學 (for MAC)<aside class="dates">Jan 9 2014</aside></a>
+        </li>
+    
+</ul>
+
+
+
+        <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    
+    <a class="symbol" href="https://www.facebook.com/icarus4.chu">
+        circlefacebook
+    </a>
+    
+    <a class="symbol" href="https://github.com/icarus4">
+        circlegithub
+    </a>
+    
+    <a class="symbol" href="https://twitter.com/icarus4chu">
+        circletwitterbird
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+        © Copyright 2017 icarus4
+    
+    </p>
+</footer>
+
+    </section>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://blog.icarus4.com/js/main.js"></script>
+<script src="http://blog.icarus4.com/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-47031561-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+</body>
+</html>

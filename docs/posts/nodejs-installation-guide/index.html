@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+	<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="icarus4">
+<meta name="description" content="Programmer and many more">
+<meta name="generator" content="Hugo 0.29" />
+<title>Node.js 安裝與版本切換教學 (for MAC)</title>
+<link rel="shortcut icon" href="http://blog.icarus4.com/images/favicon.ico">
+<link rel="stylesheet" href="http://blog.icarus4.com/css/style.css">
+<link rel="stylesheet" href="http://blog.icarus4.com/css/highlight.css">
+
+
+
+<link rel="stylesheet" href="http://blog.icarus4.com/css/monosocialiconsfont.css">
+
+
+
+<link href="http://blog.icarus4.com/index.xml" rel="alternate" type="application/rss+xml" title="icarus4" />
+
+
+<meta property="og:title" content="Node.js 安裝與版本切換教學 (for MAC)" />
+<meta property="og:description" content="前言 安裝 Node.js（以下直接以node稱呼）有很多種方式。不過由於node更新非常快速，開發過程很有可能會有切換node版本的需求，因此" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.icarus4.com/posts/nodejs-installation-guide/" />
+
+
+
+<meta property="article:published_time" content="2014-01-09T22:21:28&#43;08:00"/>
+<meta property="article:modified_time" content="2014-01-09T22:21:28&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Node.js 安裝與版本切換教學 (for MAC)">
+<meta itemprop="description" content="前言 安裝 Node.js（以下直接以node稱呼）有很多種方式。不過由於node更新非常快速，開發過程很有可能會有切換node版本的需求，因此">
+
+
+<meta itemprop="dateModified" content="2014-01-09T22:21:28&#43;08:00" />
+<meta itemprop="wordCount" content="1529">
+
+
+
+<meta itemprop="keywords" content="" />
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Node.js 安裝與版本切換教學 (for MAC)"/>
+<meta name="twitter:description" content="前言 安裝 Node.js（以下直接以node稱呼）有很多種方式。不過由於node更新非常快速，開發過程很有可能會有切換node版本的需求，因此"/>
+<meta name="twitter:site" content="@https://twitter.com/icarus4chu"/>
+
+
+    </head>
+<body>
+    <nav class="main-nav">
+	
+		<a href='http://blog.icarus4.com/'> <span class="arrow">←</span>Home</a>
+	
+
+	
+
+	
+		<a class="cta" href="http://blog.icarus4.com/index.xml">Subscribe</a>
+	
+</nav>
+
+    <section id="wrapper">
+        
+        
+<article class="post">
+    <header>
+        <h1>Node.js 安裝與版本切換教學 (for MAC)</h1>
+        <h2 class="subtitle"></h2>
+        <h2 class="headline">
+        January 9, 2014
+        <br>
+        
+        </h2>
+    </header>
+    <section id="post-body">
+        
+
+<h1 id="前言">前言</h1>
+
+<p>安裝 Node.js（以下直接以node稱呼）有很多種方式。不過由於node更新非常快速，開發過程很有可能會有切換node版本的需求，因此強烈建議不要使用MAC上常用的 <strong>Homebrew</strong> 安裝node，而是使用 <strong>nvm</strong> （ <strong>Node Version Manager</strong> ）這個tool來安裝並管理node。不過我們還是需要用Homebrew來管理nvm，所以推薦的安裝流程如下：</p>
+
+<ol>
+<li>使用Homebrew安裝nvm</li>
+<li>使用nvm安裝Node.js</li>
+<li>使用nvm無痛切換Node.js版本</li>
+</ol>
+
+<p>這篇文章針對上述流程做一個簡單的介紹</p>
+
+<h1 id="使用homebrew安裝nvm">使用Homebrew安裝nvm</h1>
+
+<p>Homebrew基本上已經是MAC user必備的tool了，還沒裝的人強烈建議趕快裝上它吧！網路上教學很多，這邊就不再多介紹了。</p>
+
+<p>首先先用<code>$ brew install nvm</code>安裝nvm：</p>
+
+<pre><code class="language-sh">$ brew install nvm
+==&gt; Downloading https://github.com/creationix/nvm/archive/v0.2.0.tar.gz
+######################################################################## 100.0%
+==&gt; Caveats
+Add the following to $HOME/.bashrc, $HOME/.zshrc, or your shell's equivalent configuration file:
+
+  source $(brew --prefix nvm)/nvm.sh
+
+Type `nvm help` for further information.
+==&gt; Summary
+  /usr/local/Cellar/nvm/0.2.0: 3 files, 24K, built in 5 seconds
+</code></pre>
+
+<p>安裝完後，為了讓你可以直接在shell使用nvm指令，必須在你的 <strong>.bash_profile</strong> 加入以下這行（習慣把設定放在.bashrc的人可以把以下的.bash_profile改成.bashrc）</p>
+
+<pre><code class="language-sh">source $(brew --prefix nvm)/nvm.sh
+</code></pre>
+
+<p>或者直接輸入以下這行來加入</p>
+
+<pre><code class="language-sh">$ echo &quot;source $(brew --prefix nvm)/nvm.sh&quot; &gt;&gt; .bash_profile
+</code></pre>
+
+<p>記得重新source你的 <strong>.bash_profile</strong> 來讓設定生效</p>
+
+<pre><code class="language-sh">$ . ~/.bash_profile
+</code></pre>
+
+<p>OK，以上就完成了nvm的安裝，簡單吧！</p>
+
+<h1 id="使用nvm安裝node-js">使用nvm安裝Node.js</h1>
+
+<p>安裝完了nvm，接著安裝主角node。先用<code>$ nvm ls-remote</code>指令看一下有哪些版本可以安裝：</p>
+
+<pre><code class="language-sh">$ nvm ls-remote
+      .
+      .
+      .
+  v0.10.20
+  v0.10.21
+  v0.10.22
+  v0.10.23
+  v0.10.24
+   v0.11.0
+   v0.11.1
+   v0.11.2
+   v0.11.3
+   v0.11.4
+   v0.11.5
+   v0.11.6
+   v0.11.7
+   v0.11.8
+   v0.11.9
+  v0.11.10
+</code></pre>
+
+<p>真夭壽多啊..果然是正在火速成長中的技術！</p>
+
+<p>直接用<code>$ nvm install &lt;version&gt;</code>指令安裝<a href="http://nodejs.org/">官網</a>上建議的版本：</p>
+
+<pre><code class="language-sh">$ nvm install v0.10.24
+######################################################################## 100.0%
+Now using node v0.10.24
+</code></pre>
+
+<p>也同時安裝最新版來測試nvm的版本管理功能：</p>
+
+<pre><code class="language-sh">$ nvm install v0.11.10
+######################################################################## 100.0%
+Now using node v0.11.10
+</code></pre>
+
+<h1 id="使用nvm無痛切換node-js版本">使用nvm無痛切換Node.js版本</h1>
+
+<p>在介紹使用nvm切換版本前，先簡單說明nvm的工作原理。</p>
+
+<p>nvm會把各個版本的node安裝在<code>/usr/local/opt/nvm</code>底下。我們可以看看該目錄底下放了哪些東西：</p>
+
+<pre><code class="language-sh">$ ls /usr/local/opt/nvm
+INSTALL_RECEIPT.json  LICENSE.md  alias  bin  nvm.sh  v0.10.24  v0.11.10
+</code></pre>
+
+<p>我們可以發現透過nvm安裝這兩個版本，事實上會在nvm目錄下另外建立了<code>v0.10.24</code>以及<code>v0.11.10</code>兩個目錄來分別存放node的binary檔。又nvm會在你的<code>$PATH</code>最前面安插指定版本的目錄，透過這個方式你在使用node指令時就會用指定的版本來運作了。</p>
+
+<p>實際確認PATH的值看看：</p>
+
+<pre><code class="language-sh">$ echo $PATH
+/usr/local/opt/nvm/v0.11.10/bin: ...
+</code></pre>
+
+<p>nvm的用法非常的簡單。我們可以另外用<code>$ nvm ls</code>指令確認nvm目前可以管理的版本有哪些：</p>
+
+<pre><code class="language-sh">$ nvm ls
+
+  v0.10.24
+  v0.11.10
+current: 	v0.11.10
+</code></pre>
+
+<p>由於透過nvm安裝node，會自動把最後安裝的版本設為目前使用中的版本，因此上述指令會看到<code>current:  v0.11.10</code>，表示我們目前正在使用<code>v0.11.10</code></p>
+
+<p>我們可以用<code>$ nvm use &lt;version&gt;</code>切換版本：</p>
+
+<pre><code class="language-sh">$ nvm use v0.10.24
+Now using node v0.10.24
+</code></pre>
+
+<p>也可以偷懶一點，不用打完整的版號：</p>
+
+<pre><code class="language-sh">$ nvm use 0.10
+Now using node v0.10.24
+</code></pre>
+
+<p>切換成別的版本看看：</p>
+
+<pre><code class="language-sh">$ nvm use 0.11
+Now using node v0.11.10
+</code></pre>
+
+<p>夠簡單吧！</p>
+
+<p>不過問題來了，如果你另外開一個shell視窗，並輸入nvm，會發現current version是空的：</p>
+
+<pre><code class="language-sh">$ nvm ls
+
+  v0.10.24
+  v0.11.10
+current:
+</code></pre>
+
+<p>這是因為利用<code>nvm use</code>指令只會在當前的shell生效，當你開了新的shell就會發現<code>$PATH</code>的值已經不包含剛才設定的node目錄了。要解決這個問題就是利用<code>$ nvm alias default &lt;version&gt;</code>來設定一個預設的node版本：</p>
+
+<pre><code class="language-sh">$ nvm alias default 0.10
+default -&gt; 0.10 (-&gt; v0.10.24)
+</code></pre>
+
+<p>此時再打開另一個shell視窗，就可以直接使用你所設定的node版本了。</p>
+
+<h1 id="實際跑跑看node-js">實際跑跑看Node.js</h1>
+
+<p>我們直接拿官網的例子來試試看
+先產生一個example.js的檔案：</p>
+
+<pre><code class="language-sh">$ touch example.js
+</code></pre>
+
+<p>內容如下</p>
+
+<pre><code class="language-js">http = require('http');
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello World\n');
+}).listen(1337, '127.0.0.1');
+console.log('Server running at http://127.0.0.1:1337/');
+</code></pre>
+
+<p>執行看看</p>
+
+<pre><code class="language-sh">$ node example.js
+Server running at http://127.0.0.1:1337/
+</code></pre>
+
+<p>打開瀏覽器，輸入<code>http://127.0.0.1:1337</code>，如果看到 &ldquo;Hello Word&rdquo; 就代表成功了</p>
+
+<h1 id="後記">後記</h1>
+
+<p>以上是我目前為止覺得比較好管理的安裝方式，如果有更推薦的方法歡迎一起討論！</p>
+
+    </section>
+</article>
+
+<footer id="post-meta" class="clearfix">
+    
+    <img class="avatar" src="http://blog.icarus4.com/images/avatar.png">
+    <div>
+        <span class="dark">icarus4</span>
+        <span>Programmer and many more</span>
+    </div>
+    
+    <section id="sharing">
+        <a class="twitter" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fblog.icarus4.com%2fposts%2fnodejs-installation-guide%2f - Node.js%20%e5%ae%89%e8%a3%9d%e8%88%87%e7%89%88%e6%9c%ac%e5%88%87%e6%8f%9b%e6%95%99%e5%ad%b8%20%28for%20MAC%29 "><span class="icon-twitter"> tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+
+    </section>
+</footer>
+
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "icarus4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<ul id="post-list" class="archive readmore">
+    <h3>Read more</h3>
+
+    
+    
+    
+        <li>
+            <a href="/posts/from-bash-to-zsh-setup-tips/">bash 轉移 zsh (oh-my-zsh) 設定心得<aside class="dates">Jan 30 2014</aside></a>
+        </li>
+    
+</ul>
+
+
+
+        <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    
+    <a class="symbol" href="https://www.facebook.com/icarus4.chu">
+        circlefacebook
+    </a>
+    
+    <a class="symbol" href="https://github.com/icarus4">
+        circlegithub
+    </a>
+    
+    <a class="symbol" href="https://twitter.com/icarus4chu">
+        circletwitterbird
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+        © Copyright 2017 icarus4
+    
+    </p>
+</footer>
+
+    </section>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://blog.icarus4.com/js/main.js"></script>
+<script src="http://blog.icarus4.com/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-47031561-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+</body>
+</html>
