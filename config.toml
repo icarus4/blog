@@ -1,4 +1,4 @@
-baseURL = "http://icarus4.com/"
+baseURL = "http://blog.icarus4.com/"
 languageCode = "utf-8"
 title = "My Blog"
 theme = "cactus"
