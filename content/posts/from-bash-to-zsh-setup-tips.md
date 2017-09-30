@@ -73,7 +73,8 @@ $ brew install zsh-completions
 ```
 
 要啟用還需要打開你的 `.zshrc` 加入以下兩行來納入 zsh-completions 的補全功能：
-```diff .zshrc
+
+```diff
 @@ -1,8 +1,11 @@
  # Path to your oh-my-zsh configuration.
  ZSH=$HOME/.oh-my-zsh
@@ -125,12 +126,13 @@ candy.zsh-theme          jnrowe.zsh-theme           sammy.zsh-theme
   .
   .
 ```
+
 切換方式是修改 `.zshrc` 的 `ZSH_THEME` 這個參數，預設是 `robbyrussell`，如果想改成 `apple.zsh-theme`，那麼請把 `ZSH_THEME` 改為 `apple`：
-```diff .zshrc
- # Set name of the theme to load.
- # Look in ~/.oh-my-zsh/themes/
- # Optionally, if you set this to "random", it'll load a random theme each
- # time that oh-my-zsh is loaded.
+```diff
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
 -ZSH_THEME="robbyrussell"
 +ZSH_THEME="apple"
 ```
@@ -157,7 +159,7 @@ brew               heroku                    repo
 ```
 
 啟用 plugin 一樣是在 `.zshrc` 中做設定，預設的設定只啟用了 git 的 plugin，如下：
-```sh .zshrc
+```sh
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -165,7 +167,7 @@ plugins=(git)
 ```
 
 要啟用某個 plugin，就只要加在括號裡即可，比如說想要用 heroku 的 plugin，請把 .zshrc 改成：
-```diff .zshrc
+```diff
  # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
  # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
  # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -178,7 +180,7 @@ plugins=(git)
 
 ### 1. alias
 如果你本來就有設定一些 alias 在你的 `.bashrc`，你又把這些設定直接套用到 `.zshrc`，那有機會有一些指令會變怪怪的，這有可能是你設定的 alias 與 oh-my-zsh 內建的衝到了。oh-my-zsh 內建的 alias 放在 `~/.oh-my-zsh/lib/aliases.zsh`，內容如下：
-```sh aliases.zsh
+```sh
 # Push and pop directories on directory stack
 alias pu='pushd'
 alias po='popd'
@@ -234,7 +236,7 @@ alias afind='ack-grep -il'
 /usr/local/etc/bash_completion:246: parse error near `]]'
 ```
 這是因為在安裝 bash-completion 的時候，原則上都會加入以下內容在你的 `.bashrc`：
-```sh .bashrc
+```sh
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi

@@ -48,7 +48,7 @@
 
 
 <meta itemprop="dateModified" content="2014-01-30T13:39:28&#43;08:00" />
-<meta itemprop="wordCount" content="1982">
+<meta itemprop="wordCount" content="1914">
 
 
 
@@ -158,25 +158,25 @@ zeromq                        zsh
 <pre><code class="language-sh">$ brew install zsh-completions
 </code></pre>
 
-<p>要啟用還需要打開你的 <code>.zshrc</code> 加入以下兩行來納入 zsh-completions 的補全功能：
-```diff .zshrc
-@@ -1,8 +1,11 @@
+<p>要啟用還需要打開你的 <code>.zshrc</code> 加入以下兩行來納入 zsh-completions 的補全功能：</p>
+
+<pre><code class="language-diff">@@ -1,8 +1,11 @@
  # Path to your oh-my-zsh configuration.
- ZSH=$HOME/.oh-my-zsh</p>
+ ZSH=$HOME/.oh-my-zsh
 
-<p>+# zsh-completions
-+fpath=(/usr/local/share/zsh-completions $fpath)</p>
++# zsh-completions
++fpath=(/usr/local/share/zsh-completions $fpath)
 
-<p># Set name of the theme to load.
+ # Set name of the theme to load.
  # Look in ~/.oh-my-zsh/themes/
- # Optionally, if you set this to &ldquo;random&rdquo;, it&rsquo;ll load a random theme each
+ # Optionally, if you set this to &quot;random&quot;, it'll load a random theme each
  # time that oh-my-zsh is loaded.
- #ZSH_THEME=&ldquo;robbyrussell&rdquo;</p>
+ #ZSH_THEME=&quot;robbyrussell&quot;
+</code></pre>
 
-<pre><code>
-同時還需要 rebuild zsh 的 `.zcompdump`
-```sh
-$ rm -f ~/.zcompdump; compinit
+<p>同時還需要 rebuild zsh 的 <code>.zcompdump</code></p>
+
+<pre><code class="language-sh">$ rm -f ~/.zcompdump; compinit
 </code></pre>
 
 <p>這樣子就搞定了</p>
@@ -213,23 +213,25 @@ candy.zsh-theme          jnrowe.zsh-theme           sammy.zsh-theme
   .
 </code></pre>
 
-<p>切換方式是修改 <code>.zshrc</code> 的 <code>ZSH_THEME</code> 這個參數，預設是 <code>robbyrussell</code>，如果想改成 <code>apple.zsh-theme</code>，那麼請把 <code>ZSH_THEME</code> 改為 <code>apple</code>：
-```diff .zshrc
- # Set name of the theme to load.
- # Look in ~/.oh-my-zsh/themes/
- # Optionally, if you set this to &ldquo;random&rdquo;, it&rsquo;ll load a random theme each
- # time that oh-my-zsh is loaded.
--ZSH_THEME=&ldquo;robbyrussell&rdquo;
-+ZSH_THEME=&ldquo;apple&rdquo;</p>
+<p>切換方式是修改 <code>.zshrc</code> 的 <code>ZSH_THEME</code> 這個參數，預設是 <code>robbyrussell</code>，如果想改成 <code>apple.zsh-theme</code>，那麼請把 <code>ZSH_THEME</code> 改為 <code>apple</code>：</p>
 
-<pre><code>改完後，重新登入看看，應該就可以發現你的 shell 長得不一樣了。
+<pre><code class="language-diff"># Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to &quot;random&quot;, it'll load a random theme each
+# time that oh-my-zsh is loaded.
+-ZSH_THEME=&quot;robbyrussell&quot;
++ZSH_THEME=&quot;apple&quot;
+</code></pre>
 
-[這邊有一些 theme 的截圖](https://github.com/robbyrussell/oh-my-zsh/wiki/themes)，如果不想一個一個試來看效果，可以參考看看。
+<p>改完後，重新登入看看，應該就可以發現你的 shell 長得不一樣了。</p>
 
-### 2. 啟用 plugin
-oh-my-zsh 內建的 plugin 都放在 `~/.oh-my-zsh/plugins`：
-```sh
-$ ls ~/.oh-my-zsh/plugins
+<p><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes">這邊有一些 theme 的截圖</a>，如果不想一個一個試來看效果，可以參考看看。</p>
+
+<h3 id="2-啟用-plugin">2. 啟用 plugin</h3>
+
+<p>oh-my-zsh 內建的 plugin 都放在 <code>~/.oh-my-zsh/plugins</code>：</p>
+
+<pre><code class="language-sh">$ ls ~/.oh-my-zsh/plugins
 ant                github                    rails3
 apache2-macports   gitignore                 rails4
 archlinux          gnu-utils                 rake
@@ -244,21 +246,17 @@ brew               heroku                    repo
   .
 </code></pre>
 
-<p>啟用 plugin 一樣是在 <code>.zshrc</code> 中做設定，預設的設定只啟用了 git 的 plugin，如下：
-```sh .zshrc</p>
+<p>啟用 plugin 一樣是在 <code>.zshrc</code> 中做設定，預設的設定只啟用了 git 的 plugin，如下：</p>
 
-<h1 id="which-plugins-would-you-like-to-load-plugins-can-be-found-in-oh-my-zsh-plugins">Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)</h1>
+<pre><code class="language-sh"># Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git)
+</code></pre>
 
-<h1 id="custom-plugins-may-be-added-to-oh-my-zsh-custom-plugins">Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/</h1>
+<p>要啟用某個 plugin，就只要加在括號裡即可，比如說想要用 heroku 的 plugin，請把 .zshrc 改成：</p>
 
-<h1 id="example-format-plugins-rails-git-textmate-ruby-lighthouse">Example format: plugins=(rails git textmate ruby lighthouse)</h1>
-
-<p>plugins=(git)</p>
-
-<pre><code>
-要啟用某個 plugin，就只要加在括號裡即可，比如說想要用 heroku 的 plugin，請把 .zshrc 改成：
-```diff .zshrc
- # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+<pre><code class="language-diff"> # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
  # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
  # Example format: plugins=(rails git textmate ruby lighthouse)
 -plugins=(git)
@@ -271,56 +269,52 @@ brew               heroku                    repo
 
 <h3 id="1-alias">1. alias</h3>
 
-<p>如果你本來就有設定一些 alias 在你的 <code>.bashrc</code>，你又把這些設定直接套用到 <code>.zshrc</code>，那有機會有一些指令會變怪怪的，這有可能是你設定的 alias 與 oh-my-zsh 內建的衝到了。oh-my-zsh 內建的 alias 放在 <code>~/.oh-my-zsh/lib/aliases.zsh</code>，內容如下：
-```sh aliases.zsh</p>
+<p>如果你本來就有設定一些 alias 在你的 <code>.bashrc</code>，你又把這些設定直接套用到 <code>.zshrc</code>，那有機會有一些指令會變怪怪的，這有可能是你設定的 alias 與 oh-my-zsh 內建的衝到了。oh-my-zsh 內建的 alias 放在 <code>~/.oh-my-zsh/lib/aliases.zsh</code>，內容如下：</p>
 
-<h1 id="push-and-pop-directories-on-directory-stack">Push and pop directories on directory stack</h1>
+<pre><code class="language-sh"># Push and pop directories on directory stack
+alias pu='pushd'
+alias po='popd'
 
-<p>alias pu=&lsquo;pushd&rsquo;
-alias po=&lsquo;popd&rsquo;</p>
+# Basic directory operations
+alias ...='cd ../..'
+alias -- -='cd -'
 
-<h1 id="basic-directory-operations">Basic directory operations</h1>
+# Super user
+alias _='sudo'
+alias please='sudo'
 
-<p>alias &hellip;=&lsquo;cd ../..&rsquo;
-alias &ndash; -=&lsquo;cd -&rsquo;</p>
+#alias g='grep -in'
 
-<h1 id="super-user">Super user</h1>
-
-<p>alias _=&lsquo;sudo&rsquo;
-alias please=&lsquo;sudo&rsquo;</p>
-
-<p>#alias g=&lsquo;grep -in&rsquo;</p>
-
-<h1 id="show-history">Show history</h1>
-
-<p>if [ &ldquo;$HIST_STAMPS&rdquo; = &ldquo;mm/dd/yyyy&rdquo; ]
+# Show history
+if [ &quot;$HIST_STAMPS&quot; = &quot;mm/dd/yyyy&quot; ]
 then
-    alias history=&lsquo;fc -fl 1&rsquo;
-elif [ &ldquo;$HIST_STAMPS&rdquo; = &ldquo;dd.mm.yyyy&rdquo; ]
+    alias history='fc -fl 1'
+elif [ &quot;$HIST_STAMPS&quot; = &quot;dd.mm.yyyy&quot; ]
 then
-    alias history=&lsquo;fc -El 1&rsquo;
-elif [ &ldquo;$HIST_STAMPS&rdquo; = &ldquo;yyyy-mm-dd&rdquo; ]
+    alias history='fc -El 1'
+elif [ &quot;$HIST_STAMPS&quot; = &quot;yyyy-mm-dd&quot; ]
 then
-    alias history=&lsquo;fc -il 1&rsquo;
+    alias history='fc -il 1'
 else
-    alias history=&lsquo;fc -l 1&rsquo;
-fi</p>
+    alias history='fc -l 1'
+fi
+# List direcory contents
+alias lsa='ls -lah'
+alias l='ls -la'
+alias ll='ls -l'
+alias la='ls -lA'
+alias sl=ls # often screw this up
 
-<h1 id="list-direcory-contents">List direcory contents</h1>
+alias afind='ack-grep -il'
+</code></pre>
 
-<p>alias lsa=&lsquo;ls -lah&rsquo;
-alias l=&lsquo;ls -la&rsquo;
-alias ll=&lsquo;ls -l&rsquo;
-alias la=&lsquo;ls -lA&rsquo;
-alias sl=ls # often screw this up</p>
+<p>建議要在 <code>.zshrc</code> 加上自己的 alias 前先確認看看這個檔案裡是不是有一些 alias 會跟你的衝到。</p>
 
-<p>alias afind=&lsquo;ack-grep -il&rsquo;</p>
+<h3 id="2-bash-completion">2. bash-completion</h3>
 
-<pre><code>建議要在 `.zshrc` 加上自己的 alias 前先確認看看這個檔案裡是不是有一些 alias 會跟你的衝到。
-### 2. bash-completion
-如果你跟我一樣用 bash 時有裝 bash-completion，而且又沒仔細弄清楚就把 `.bashrc` 的內容一股腦套用在 `.zshrc` 上，那麼當你開一個新的 shell 時有可能會發現遇到以下的訊息：
-```sh
-  .
+<p>如果你跟我一樣用 bash 時有裝 bash-completion，而且又沒仔細弄清楚就把 <code>.bashrc</code> 的內容一股腦套用在 <code>.zshrc</code> 上，那麼當你開一個新的 shell 時有可能會發現遇到以下的訊息：</p>
+
+<pre><code class="language-sh">  .
   .
   .
 /usr/local/etc/bash_completion:138: command not found: complete
@@ -335,13 +329,14 @@ alias sl=ls # often screw this up</p>
 /usr/local/etc/bash_completion:246: parse error near `]]'
 </code></pre>
 
-<p>這是因為在安裝 bash-completion 的時候，原則上都會加入以下內容在你的 <code>.bashrc</code>：
-<code>sh .bashrc
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
+<p>這是因為在安裝 bash-completion 的時候，原則上都會加入以下內容在你的 <code>.bashrc</code>：</p>
+
+<pre><code class="language-sh">if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
-</code>
-以上指令會去source <code>bash_completion</code> 的內容，而 bash_completion 裡面使用了 <a href="http://www.gnu.org/software/bash/manual/html_node/Programmable-Completion-Builtins.html">bash completion buitins</a> 中的 <code>complete</code> 這個指令，所以如果你的 .zshrc 也去 source bash_completion，那就會show出像上面的 <code>command not found: complete</code> 這種訊息了。所以記得在 .zshrc 中不要加入這段 code。</p>
+</code></pre>
+
+<p>以上指令會去source <code>bash_completion</code> 的內容，而 bash_completion 裡面使用了 <a href="http://www.gnu.org/software/bash/manual/html_node/Programmable-Completion-Builtins.html">bash completion buitins</a> 中的 <code>complete</code> 這個指令，所以如果你的 .zshrc 也去 source bash_completion，那就會show出像上面的 <code>command not found: complete</code> 這種訊息了。所以記得在 .zshrc 中不要加入這段 code。</p>
 
 <p>趕快一起來用 zsh 吧！</p>
 
